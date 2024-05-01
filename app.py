@@ -10,7 +10,7 @@ from tkinter.messagebox import showerror
 S_OK: int = 0xaa
 S_ERR: int = 0xff
 
-def detached_callback(f):
+def detached_callback(f):   #create detached threads
     return lambda *args, **kwargs: Thread(target=f, args=args, kwargs=kwargs).start()
 
 class LockedSerial(Serial):
@@ -31,7 +31,7 @@ class LockedSerial(Serial):
         with self._lock:
             super().close()
 
-class SerialPortal(tk.Toplevel):
+class SerialPortal(tk.Toplevel):    #
     def __init__(self, parent: App):
         super().__init__(parent)
         

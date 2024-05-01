@@ -1,5 +1,6 @@
 ### How does the DevBoard handle received serial messages? How does this differ from the naïve approach?
-
+The Devboard handles serial messages with interrupts. Whenever there is information passed through serial, it handles the "event" and runs the on_receive function. This is different from the naive approach because it is a based on interrupts and not timing (looping). 
 ### What does `detached_callback` do? What would happen if it wasn't used?
-
+Detached_callback is used to execute funtions in separate threads. Without it, functions decorated with it would be executed in the main thread instead of being run in separate threads. This would end up blocking the GUI thread, causing it to freeze/unresponsive. 
 ### What does `LockedSerial` do? Why is it _necessary_?
+LockedSerial inherits from Serial class. This inheritance allows LockedSerial to leverage the existing features of the Serial class while adding the necessary synchronization mechanisms for concurrent access. Basically, it locks the port so only one thread can use the port at a time to prevent undefined behavior in the form of a race condition. 
