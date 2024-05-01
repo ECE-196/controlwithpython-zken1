@@ -61,9 +61,16 @@ class App(tk.Tk):
         self.port = tk.StringVar()
         self.led = tk.BooleanVar()
         
-        ttk.Checkbutton(self, text='Toggle LED', variable=self.led, command=self.update_led).pack()
-        ttk.Button(self, text='Send Invalid', command=self.send_invalid).pack()
-        ttk.Button(self, text='Disconnect', command=self.disconnect, default='active').pack()
+        button_frame = ttk.Frame(self)
+        button_frame.pack(padx=10, pady=10)
+
+        button_style = ttk.Style()
+        button_style.configure("Visible.TButton", foreground="black", relief="raised")
+
+        ttk.Checkbutton(button_frame, text='Toggle LED', variable=self.led, command=self.update_led, style='Visible.TButton', width=15).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text='Send Invalid', command=self.send_invalid, style='Visible.TButton', width=15).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text='Disconnect', command=self.disconnect, default='active', style='Visible.TButton', width=15).pack(side=tk.LEFT)
+
         
         SerialPortal(self)
         
