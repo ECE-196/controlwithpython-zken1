@@ -3,6 +3,9 @@ from threading import Thread, Lock
 from serial import Serial, SerialException
 from serial.tools.list_ports import comports
 
+# I don't know why but my ttk buttons are not apprearing on my computer. They still function and are in the places 
+# they are supposed to be. I ran this code on someone elses laptop and the GUI appears with buttons. It may be an
+# issue with my python? 
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter.messagebox import showerror
